@@ -32,7 +32,7 @@
     <button id="num-1">1</button>
     <button id="num-2">2</button>
     <button id="num-3">3</button>
-    <button id="devide">/</button>
+    <button id="deivide">/</button>
     </div>
     <div class="row">
       <button id="clear">C</button>
@@ -40,43 +40,47 @@
       <button id="calculate">=</button>
       <button id="multiply">x</button>
     </div>
-<!-- Code injected by live-server -->
 <script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+	let numOne = '';
+  let operator = '';
+  let numTwo ='';
+  const $operator = document.querySelector('#operator');
+  const $result = document.querySelector('#result');
+  const oneClickNumber = (event) => {
+    if(operator){
+    numTwo += event.target.textContent;
+  } else{
+    numOne += event.target.textContent;
+  }
+    $result.value += event.target.textContent;  
+    }; 
+
+  document.querySelector('#num-0').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-1').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-2').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-3').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-4').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-5').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-6').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-7').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-8').addEventListener('clikc', oneClickNumber);
+  document.querySelector('#num-9').addEventListener('clikc', oneClickNumber);
+  const oneClickOperator = (op) => () =>{
+    if(numOne){
+      operator = op;
+      $operator.value = op;
+    }else{
+      alert('숫자를 먼저 입력하세요.');
+    }
+  }
+  document.querySelector('#plus').addEventListener('clikc', oneClickOperator('+'));
+  document.querySelector('#minus').addEventListener('clikc', oneClickOperator('-'));
+  document.querySelector('#divide').addEventListener('clikc', oneClickOperator('/')); 
+  document.querySelector('#multiply').addEventListener('clikc', oneClickOperator('*'));
+  document.querySelector('#calculate').addEventListener('clikc', () => {});
+  document.querySelector('#clear').addEventListener('clikc', () => {});
+
+
+    </script>
 </body>
 </html>
